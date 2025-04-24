@@ -1,7 +1,7 @@
 CC=cc
 CFLAGS= -std=c11 -Wall -Wextra -pedantic -O0 -g -lm -Wno-unused-variable -Wno-unused-parameter -no-pie -z noexecstack -I ../
 NASM=nasm
-NASMFLAGS=-f elf64 -g -F DWARF
+NASMFLAGS=-f elf64 -g -F DWARF -p "abi_enforcer.mac"
 NASM_ABI_FLAGS=$(NASMFLAGS) -p "abi_enforcer.mac"
 STRUCTS_FILE=structs.h
 STRUCTS_PATH="../3\ -\ Alineación\ y\ Estructuras"
@@ -32,7 +32,7 @@ main.o: main.c
 
 Estructuras_c.o: Estructuras.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
+	w
 Estructuras_asm.o: Estructuras.asm
 	$(NASM) $(NASMFLAGS) $< -o $@
 
